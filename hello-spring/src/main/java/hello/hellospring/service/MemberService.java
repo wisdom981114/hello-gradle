@@ -21,11 +21,14 @@ public class MemberService {
 
     public Long join(Member member){
 
-        validateDuplicateMember(member); // 중복회원 검증
-        //System.out.println("~~~ MemberService join save 직전");
-        memberRepository.save(member);
-        //System.out.println("~~~ MemberService join save 직후");
-        return member.getId();
+        long start = System.currentTimeMillis();
+            validateDuplicateMember(member); // 중복회원 검증
+            //System.out.println("~~~ MemberService join save 직전");
+            memberRepository.save(member);
+            //System.out.println("~~~ MemberService join save 직후");
+            return member.getId();
+
+
 
     }
     private void validateDuplicateMember(Member member) {
@@ -50,8 +53,10 @@ public class MemberService {
 //        });
 //    }
     public List<Member> findMembers(){
-        return memberRepository.findAll();
-    }
+            return memberRepository.findAll();
+        }
+
+
     public  Optional<Member> findOne(Long memberId){
         return memberRepository.findById(memberId);
     }
